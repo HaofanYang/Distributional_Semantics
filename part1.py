@@ -3,7 +3,6 @@ from collections import defaultdict
 
 class word_vectors():
     def __init__(self):
-        self.UNK = '<UNK>'
         self.raw_count = None
         self.ppmi = None
         self.reduced_ppmi = None
@@ -22,9 +21,6 @@ class word_vectors():
                     next_index = len(self.word_dict)
                     self.word_dict[word] = next_index
                     self.reversed_word_dict[next_index] = word
-        unk_index = len(self.word_dict)
-        self.word_dict[self.UNK] = unk_index
-        self.reversed_word_dict[unk_index] = self.UNK
 
         # Initialize raw_count
         vocab_size = len(self.word_dict)
@@ -37,15 +33,15 @@ class word_vectors():
                 words = line.lower().split()
                 for i in range(len(words)):
                     cur_word = words[i]
-                    cur_word_index = self.word_dict.get(cur_word, self.word_dict[self.UNK])
+                    cur_word_index = self.word_dict[cur_word]
                     # If there is a previous word
                     if i > 0:
                         prev_word = words[i - 1]
-                        prev_word_index = self.word_dict.get(prev_word, self.word_dict[self.UNK])
+                        prev_word_index = self.word_dict[prev_word]
                         self.raw_count[cur_word_index][prev_word_index] += 1
                     if i < len(words) - 1:
                         next_word = words[i + 1]
-                        next_word_index = self.word_dict.get(next_word, self.word_dict[self.UNK])
+                        next_word_index = self.word_dict[next_word]
                         self.raw_count[cur_word_index][next_word_index] += 1
         self.raw_count = np.multiply(self.raw_count, 10) 
         self.raw_count = np.add(self.raw_count, 1)
@@ -63,11 +59,11 @@ class word_vectors():
         self.ppmi = f(self.ppmi)
     
     def get_word_vec_ppmi(self, word):
-        word_index = self.word_dict.get(word, self.word_dict[self.UNK])
+        word_index = self.word_dict[word]
         return self.ppmi[word_index].copy()
     
     def get_word_vec_raw(self, word):
-        word_index = self.word_dict.get(word, self.word_dict[self.UNK])
+        word_index = self.word_dict[word]
         return self.raw_count[word_index].copy()
     
     def compute_distance(self, word1, word2):
