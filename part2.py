@@ -28,7 +28,7 @@ class word_vectors:
                 line = line.split()
                 if self.vector_length == 0:
                     self.vector_length = len(line) - 1
-                word = line[0]
+                word = line[0].lower()
                 word_index = self.word_dict.get(
                     word, len(self.word_dict)
                 )  # Find the word index from dict. If not found, the next index will be the size of current dict
@@ -57,14 +57,14 @@ class word_vectors:
                 word_vectors.NEGATIVE_EUCLIDEAN_DISTANCE
             )
         # Apply vectorized lambda function on questions
-        predicted_cosine = cosine_predictors(questions)
-        predicted_distance = distance_predictors(questions)
+        cosine_predicted_results = cosine_predictors(questions)
+        distance_predicted_results = distance_predictors(questions)
         # An array of lambda functions
         evaluators = np.array([question.get_evaluator() for question in questions])
         apply_evaluators = np.vectorize(lambda f, x: f(x))
         # Compute an array for each question, where 0 denotes wrong answer and 1 denotes correct answer
-        evaluation_cosine = apply_evaluators(evaluators, predicted_cosine)
-        evaluation_distance = apply_evaluators(evaluators, predicted_distance)
+        evaluation_cosine = apply_evaluators(evaluators, cosine_predicted_results)
+        evaluation_distance = apply_evaluators(evaluators, distance_predicted_results)
         # Sum over evaluation arrays, we can get the number of correct answers, from which we can further compute accuracies
         cosine_accuracy = evaluation_cosine.sum() / len(evaluation_cosine)
         distance_accuracy = evaluation_distance.sum() / len(evaluation_distance)
@@ -82,7 +82,6 @@ class word_vectors:
             f = np.vectorize(f)
             similarities = f(options)  # Similarities between each option and the target word
             arg_max = similarities.argmax()
-            return options[arg_max]
         return np.vectorize(predictor)
     
     # Given a criteria (either cosine or distance) to compute similarity
@@ -128,7 +127,7 @@ if __name__ == "__main__":
     wvs_compose.load("data/EN-wform.w.2.ppmi.svd.500.rcv_vocab.txt")
     # Creating testing questins
     sat_questions = sat_question.create_questions_from_file("data/SAT-package-V3.txt")
-    synonym_questions = synonym_question.create_questions_from_file("data/EN_syn_verb.txt", 1000)
+    synonym_questions = synonym_question.create_questions_from_file("data/EN_syn_verb.txt", 100)
     print("="*80)
     # Predict and evaluate
     wvs_word2vec.predict_and_evaluate(synonym_questions)

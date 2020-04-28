@@ -35,13 +35,15 @@ class synonym_question():
         self.word = word  # string
         self.answer = synonym  # string
         self.non_synonyms = non_synonyms  # set
+        self.options = [self.answer]
+        for word in self.non_synonyms:
+            self.options.append(word)
+        random.shuffle(self.options)
+        self.options = np.array(self.options)
 
     # Return a numpy array of options, including the answer and non-synonyms
     def get_options(self):
-        options = [self.answer]
-        for word in self.non_synonyms:
-            options.append(word)
-        return np.array(options)
+        return self.options
 
     # Return the word, of which we need to find the synonym, using word vectors
     def get_topic(self):
@@ -51,7 +53,12 @@ class synonym_question():
     # that return 1 if the given answer is the correct result. Return 0 otherwise
     def get_evaluator(self):
         return lambda predicted_word: 1 if predicted_word == self.answer else 0
-
+    
+    def __str__(self):
+        topic = "Topic: {t}".format(t = self.word)
+        options = "Options: {os}".format(os = self.get_options())
+        answer = "Answer: {a}".format(a = self.answer)
+        return "{a}\n{b}\n{c}\n-------".format(a = topic, b = options, c = answer)
 
 class sat_question():
     # mapping alphabet answers to index
@@ -97,6 +104,7 @@ class sat_question():
     def __init__(self, _topic, _answer, _options):
         self.topic = _topic  # tuple, the topic of the question
         self.answer = _answer  # int, the index of correct answer in options
+        random.shuffle(_options)
         self.options = _options  # a numpy array of tuples, containing available options (1 correct and 4 wrong)
 
     # Return a numpy array of tuples
@@ -111,3 +119,9 @@ class sat_question():
     # that return 1 if the given answer is the correct result. Return 0 otherwise
     def get_evaluator(self):
         return lambda predicted_answer_index: 1 if predicted_answer_index == self.answer else 0
+
+    def __str__(self):
+        topic = "Topic: {t}".format(t = self.word)
+        options = "Options: {os}".format(os = self.get_options())
+        answer = "Answer: {a}".format(a = self.answer)
+        return "{a}\n{b}\n{c}\n-------".format(a = topic, b = options, c = answer)
