@@ -3,6 +3,10 @@ from collections import defaultdict
 import scipy.linalg as scipy_linalg
 
 class word_vectors():
+    USE_PPMI = 'PPMI'
+    USE_REDUCED_PPMI = 'REDUCED_PPMI'
+    USE_RAW_COUNT = 'RAW_COUNT'
+
     def __init__(self):
         self.raw_count = None
         self.ppmi = None
@@ -70,23 +74,27 @@ class word_vectors():
         self.__verify_SVD_reconstruction(UEVt)
         self.reduced_ppmi = self.ppmi * V[:, 0:3]
 
-    def get_word_vec_ppmi(self, word):
+    def get_word_vec(self, word, option, print_info = False):
+        switcher = {
+            word_vectors.USE_PPMI: self.ppmi,
+            word_vectors.USE_REDUCED_PPMI: self.reduced_ppmi,
+            word_vectors.USE_RAW_COUNT: self.raw_count,
+        }
         word_index = self.word_dict[word]
-        return self.ppmi[word_index].copy()
+        matrix = switcher[option]
+        word_vector = matrix[word_index]
+        if print_info:
+            print("The word vector for \'{w}\', using {o}: \n{vec}".format(w = word, o = option, vec = word_vector))
+        return word_vector
     
-    def get_word_vec_raw(self, word):
-        word_index = self.word_dict[word]
-        return self.raw_count[word_index].copy()
-
-    def get_word_vec_reduced_ppmi(self, word):
-        word_index = self.word_dict[word]
-        return self.reduced_ppmi[word_index].copy()
-    
-    def compute_distance(self, word1, word2):
-        vec1 = self.get_word_vec_ppmi(word1)
-        vec2 = self.get_word_vec_ppmi(word2)
+    def compute_distance(self, word1, word2, option, print_info = False):
+        vec1 = self.get_word_vec(word1, option)
+        vec2 = self.get_word_vec(word2, option)
         diff = vec1 - vec2
-        return np.linalg.norm(diff)
+        distance = np.linalg.norm(diff)
+        if print_info:
+            print("The difference between \'{w1}\' and \'{w2}\' using [{op}] is {d}".format(w1 = word1, w2 = word2, op = option, d = distance))
+        return distance
     
     # Verify that matrices multiplications reproduce the original PPMI matrix
     # Print error messages if failed to do so
@@ -104,12 +112,26 @@ class word_vectors():
 if __name__ == '__main__':
     wvs = word_vectors()
     wvs.train('data/dist_sim_data.txt')
-    print(wvs.get_word_vec_raw('dogs'))
-    print(wvs.get_word_vec_ppmi('dogs'))
-    print(wvs.compute_distance("women", "men"))
-    print(wvs.compute_distance("women", "dogs"))
-    print(wvs.compute_distance("men", "dogs"))
-    print(wvs.compute_distance("feed", "like"))
-    print(wvs.compute_distance("feed", "bite"))
-    print(wvs.compute_distance("like", "bite"))
 
+    print("Comparing word vectors for \'dogs\' using [RAW_COUNT] and [PPMI]")
+    wvs.get_word_vec('dogs', word_vectors.USE_RAW_COUNT, True)
+    wvs.get_word_vec('dogs', word_vectors.USE_PPMI, True)
+    print("="*20)
+    wvs.compute_distance("women", "men", word_vectors.USE_PPMI, True)
+    wvs.compute_distance("women", "men", word_vectors.USE_REDUCED_PPMI, True)
+    print("="*20)
+    wvs.compute_distance("women", "dogs", word_vectors.USE_PPMI, True)
+    wvs.compute_distance("women", "dogs", word_vectors.USE_REDUCED_PPMI, True)
+    print("="*20)
+    wvs.compute_distance("men", "dogs", word_vectors.USE_PPMI, True)
+    wvs.compute_distance("men", "dogs", word_vectors.USE_REDUCED_PPMI, True)
+    print("="*20)
+    wvs.compute_distance("feed", "like", word_vectors.USE_PPMI, True)
+    wvs.compute_distance("feed", "like", word_vectors.USE_REDUCED_PPMI, True)
+    print("="*20)
+    wvs.compute_distance("feed", "bite", word_vectors.USE_PPMI, True)
+    wvs.compute_distance("feed", "bite", word_vectors.USE_REDUCED_PPMI, True)
+    print("="*20)
+    wvs.compute_distance("like", "bite", word_vectors.USE_PPMI, True)
+    wvs.compute_distance("like", "bite", word_vectors.USE_REDUCED_PPMI, True)
+    print("="*20)
