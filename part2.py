@@ -82,6 +82,7 @@ class word_vectors:
             f = np.vectorize(f)
             similarities = f(options)  # Similarities between each option and the target word
             arg_max = similarities.argmax()
+            return options[arg_max]
         return np.vectorize(predictor)
     
     # Given a criteria (either cosine or distance) to compute similarity
@@ -108,8 +109,12 @@ class word_vectors:
 
     # return the similarity of two words
     def _similarity(self, word1, word2, criteria):
-        word_vec_1 = self._get_word_vector(word1)
-        word_vec_2 = self._get_word_vector(word2)
+        word_vec_1 = np.zeros((1, self.vector_length))
+        for word in word1.split("_"):
+            word_vec_1 += self._get_word_vector(word)
+        word_vec_2 = np.zeros((1, self.vector_length))
+        for word in word2.split("_"):
+            word_vec_2 += self._get_word_vector(word)
         return word_vectors.SIMILARITY_SWITCHER[criteria](word_vec_1, word_vec_2)
 
     # return the similarity of two pairs of words
@@ -127,7 +132,7 @@ if __name__ == "__main__":
     wvs_compose.load("data/EN-wform.w.2.ppmi.svd.500.rcv_vocab.txt")
     # Creating testing questins
     sat_questions = sat_question.create_questions_from_file("data/SAT-package-V3.txt")
-    synonym_questions = synonym_question.create_questions_from_file("data/EN_syn_verb.txt", 100)
+    synonym_questions = synonym_question.create_questions_from_file("data/EN_syn_verb.txt", 1000)
     print("="*80)
     # Predict and evaluate
     wvs_word2vec.predict_and_evaluate(synonym_questions)
