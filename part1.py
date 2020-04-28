@@ -84,7 +84,7 @@ class word_vectors():
         matrix = switcher[option]
         word_vector = matrix[word_index]
         if print_info:
-            print("The word vector for \'{w}\', using {o}: \n{vec}".format(w = word, o = option, vec = word_vector))
+            print("The word vector for \'{w}\', using {o}:\n{vec}".format(w = word, o = option, vec = word_vector))
         return word_vector
     
     def compute_distance(self, word1, word2, option, print_info = False):

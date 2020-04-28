@@ -2,16 +2,14 @@ import numpy as np
 from collections import defaultdict
 import random
 from question import sat_question, synonym_question
-
+import scipy.linalg as scipy_linalg
 
 class word_vectors:
     COSINE = "COSINE"
     NEGATIVE_EUCLIDEAN_DISTANCE = "NEGATIVE_EUCLIDEAN_DISTANCE"
     SIMILARITY_SWITCHER = {
-        COSINE: lambda vec1, vec2: np.dot(vec1, vec2.T)
-        / np.linalg.norm(vec1)
-        / np.linalg.norm(vec2),
-        NEGATIVE_EUCLIDEAN_DISTANCE: lambda vec1, vec2: 0 - np.linalg.norm(vec1 - vec2),
+        COSINE: lambda vec1, vec2: np.dot(vec1, vec2.T) / scipy_linalg.norm(vec1) / scipy_linalg.norm(vec2),
+        NEGATIVE_EUCLIDEAN_DISTANCE: lambda vec1, vec2: 0 - scipy_linalg.norm(vec1 - vec2),
     }
 
     def __init__(self, _name):
@@ -28,7 +26,7 @@ class word_vectors:
                 line = line.split()
                 if self.vector_length == 0:
                     self.vector_length = len(line) - 1
-                word = line[0].lower()
+                word = line[0]
                 word_index = self.word_dict.get(
                     word, len(self.word_dict)
                 )  # Find the word index from dict. If not found, the next index will be the size of current dict
@@ -103,7 +101,7 @@ class word_vectors:
         # Return an unit vector when given UNK
         if not word in self.word_dict:
             to_return = np.zeros((1, self.vector_length))
-            return to_return - np.sqrt(1 / self.vector_length)
+            return to_return + np.sqrt(1 / self.vector_length)
         word_index = self.word_dict[word]
         return self.matrix[word_index]
 
@@ -133,7 +131,7 @@ if __name__ == "__main__":
     # Creating testing questins
     sat_questions = sat_question.create_questions_from_file("data/SAT-package-V3.txt")
     synonym_questions = synonym_question.create_questions_from_file("data/EN_syn_verb.txt", 1000)
-    print("="*80)
+    print("-"*80)
     # Predict and evaluate
     wvs_word2vec.predict_and_evaluate(synonym_questions)
     wvs_compose.predict_and_evaluate(synonym_questions)

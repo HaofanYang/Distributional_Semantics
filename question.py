@@ -104,7 +104,6 @@ class sat_question():
     def __init__(self, _topic, _answer, _options):
         self.topic = _topic  # tuple, the topic of the question
         self.answer = _answer  # int, the index of correct answer in options
-        random.shuffle(_options)
         self.options = _options  # a numpy array of tuples, containing available options (1 correct and 4 wrong)
 
     # Return a numpy array of tuples
@@ -121,7 +120,7 @@ class sat_question():
         return lambda predicted_answer_index: 1 if predicted_answer_index == self.answer else 0
 
     def __str__(self):
-        topic = "Topic: {t}".format(t = self.word)
-        options = "Options: {os}".format(os = self.get_options())
+        topic = "Topic: {t}".format(t = self.topic)
+        options = "Options: {os}".format(os = self.options)
         answer = "Answer: {a}".format(a = self.answer)
         return "{a}\n{b}\n{c}\n-------".format(a = topic, b = options, c = answer)
