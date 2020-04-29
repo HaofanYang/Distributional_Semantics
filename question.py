@@ -5,33 +5,16 @@ from collections import defaultdict
 class synonym_question():
     # Create a list of synonym_question, as a numpy array
     @classmethod
-    def create_questions_from_file(cls, path, num_of_questions):
-        print("Creating synonym questions from [{s}]....".format(s=path))
-        word_set = set()
-        synonyms_of_words = defaultdict(set)  # synonyms of each word
-        with open(path) as f:
-            f.readline()  # Skip the first line
-            for line in f:
-                word1, word2 = line.lower().split()
-                if (word1 == '0' or word2 =='0'): continue
-                word_set.add(word1)
-                word_set.add(word2)
-                dict_of_word_1 = synonyms_of_words.get(word1, set())
-                dict_of_word_1.add(word2)
-                dict_of_word_2 = synonyms_of_words.get(word1, set())
-                dict_of_word_2.add(word1)
-                synonyms_of_words[word1] = dict_of_word_1
-                synonyms_of_words[word2] = dict_of_word_2
+    def create_questions_from_file(cls, root, num_of_questions):
+        print("Loading synonym questions from [{s}]....".format(s=root))
         questions = np.empty(num_of_questions, dtype=synonym_question)
         for i in range(num_of_questions):
-            target_word = random.sample(word_set, 1)[0]
-            synonyms = synonyms_of_words[target_word]
-            answer = random.sample(synonyms, 1)[0]
-            non_synonyms = word_set.difference(synonyms)
-            if target_word in non_synonyms:
-                non_synonyms.remove(target_word)
-            non_synonyms = set(random.sample(non_synonyms, 4))
-            questions[i] = synonym_question(target_word, answer, non_synonyms)
+            with open("{r}/{index}.txt".format(r = root, index = i)) as f:
+                lines = f.readlines()
+                target_word = lines[0]
+                answer = lines[1]
+                non_synonyms = set(lines[2].split())
+                questions[i] = synonym_question(target_word, answer, non_synonyms)
         return questions
 
     def __init__(self, word, synonym, non_synonyms):

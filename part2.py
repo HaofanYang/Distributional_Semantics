@@ -132,7 +132,7 @@ if __name__ == "__main__":
     wvs_compose.load("data/EN-wform.w.2.ppmi.svd.500.rcv_vocab.txt")
     # Creating testing questins
     sat_questions = sat_question.create_questions_from_file("data/SAT-package-V3.txt")
-    synonym_questions = synonym_question.create_questions_from_file("data/EN_syn_verb.txt", 1000)
+    synonym_questions = synonym_question.create_questions_from_file("synonym_test_set", 1000)
     print("-"*80)
     # Predict and evaluate
     wvs_word2vec.predict_and_evaluate(synonym_questions)
