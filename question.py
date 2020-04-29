@@ -11,8 +11,8 @@ class synonym_question():
         for i in range(num_of_questions):
             with open("{r}/{index}.txt".format(r = root, index = i)) as f:
                 lines = f.readlines()
-                target_word = lines[0]
-                answer = lines[1]
+                target_word = lines[0][:-1]
+                answer = lines[1][:-1]
                 non_synonyms = set(lines[2].split())
                 questions[i] = synonym_question(target_word, answer, non_synonyms)
         return questions
