@@ -119,10 +119,22 @@ class word_vectors:
 
     # return the similarity of two pairs of words
     def _pair_similarity(self, pair1, pair2, criteria):
-        pair1_diff = self._get_word_vector(pair1[1]) - self._get_word_vector(pair1[0])
-        pair21_plus_diff = self._get_word_vector(pair2[0]) + pair1_diff # this is the expected vector of pair2[1]
-        return word_vectors.SIMILARITY_SWITCHER[criteria](pair21_plus_diff, self._get_word_vector(pair2[1]))
+        # pair1_diff = self._get_word_vector(pair1[1]) - self._get_word_vector(pair1[0])
+        # pair21_plus_diff = self._get_word_vector(pair2[0]) + pair1_diff # this is the expected vector of pair2[1]
+        # return word_vectors.SIMILARITY_SWITCHER[criteria](pair21_plus_diff, self._get_word_vector(pair2[1]))
 
+        # start_diff = self._get_word_vector(pair2[0]) - self._get_word_vector(pair1[0])
+        # end_diff = self._get_word_vector(pair2[1]) - self._get_word_vector(pair1[1])
+        # if (scipy_linalg.norm(start_diff) == 0 or scipy_linalg.norm(end_diff) == 0):
+        #     return float('-inf')
+        # return word_vectors.SIMILARITY_SWITCHER[criteria](start_diff, end_diff)
+
+        pair1_diff = self._get_word_vector(pair1[1]) - self._get_word_vector(pair1[0])
+        pair2_diff = self._get_word_vector(pair2[1]) - self._get_word_vector(pair2[0])
+        if (scipy_linalg.norm(pair1_diff) == 0 or scipy_linalg.norm(pair2_diff) == 0):
+            return float('-inf')
+        return word_vectors.SIMILARITY_SWITCHER[criteria](pair1_diff, pair2_diff)
+        
 if __name__ == "__main__":
     # Loading models
     print("="*80)
