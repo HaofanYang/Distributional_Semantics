@@ -109,9 +109,11 @@ class word_vectors:
     def _similarity(self, word1, word2, criteria):
         word_vec_1 = np.zeros((1, self.vector_length))
         for word in word1.split("_"):
+            if word == 'to': continue
             word_vec_1 += self._get_word_vector(word)
         word_vec_2 = np.zeros((1, self.vector_length))
         for word in word2.split("_"):
+            if word == 'to': continue
             word_vec_2 += self._get_word_vector(word)
         return word_vectors.SIMILARITY_SWITCHER[criteria](word_vec_1, word_vec_2)
 
