@@ -1,0 +1,3 @@
+to_blast
+to_explode
+to_invalidate to_disconnect to_figure_out to_phrase 

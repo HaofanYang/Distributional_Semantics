@@ -1,0 +1,3 @@
+to_corrupt
+to_damage
+to_cascade to_rule to_catalogue to_abuse 

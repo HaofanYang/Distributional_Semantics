@@ -1,0 +1,3 @@
+to_brawl
+to_attack
+to_discover to_castrate to_evaluate to_misuse 

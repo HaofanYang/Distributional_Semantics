@@ -1,0 +1,3 @@
+to_transfer
+to_deteriorate
+to_stimulate to_woo to_reduce to_adverse 

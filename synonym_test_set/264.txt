@@ -1,0 +1,3 @@
+to_hit
+to_smack
+to_excuse to_formulate to_show to_reach 

@@ -1,0 +1,3 @@
+to_close_one_eye
+to_blink_one_eye
+to_tell to_grapple to_stagnate to_combine 

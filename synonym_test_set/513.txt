@@ -1,0 +1,3 @@
+to_contend
+to_battle
+to_pick to_stop to_blink to_immobilize 

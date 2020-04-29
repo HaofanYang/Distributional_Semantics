@@ -1,0 +1,3 @@
+to_correct
+to_change
+to_print to_edge_out to_battle to_iron 

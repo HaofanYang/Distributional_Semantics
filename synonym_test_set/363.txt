@@ -1,0 +1,3 @@
+to_blink_one_eye
+to_close_one_eye
+to_expand to_reset to_play to_brawl 

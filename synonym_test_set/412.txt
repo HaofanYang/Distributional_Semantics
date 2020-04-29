@@ -1,0 +1,3 @@
+to_reason
+to_conclude
+to_imply to_exhilarate to_hold_still to_believe 

@@ -1,0 +1,3 @@
+to_divert
+to_refocus
+to_smooth to_shorten to_strum to_explode 

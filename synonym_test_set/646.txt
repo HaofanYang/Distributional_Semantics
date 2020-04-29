@@ -1,0 +1,3 @@
+to_inscribe
+to_inscribe
+to_damage to_mingle to_associate to_shriek 

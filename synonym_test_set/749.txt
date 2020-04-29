@@ -1,0 +1,3 @@
+to_time
+to_term
+to_acquire to_resound to_list to_slay 

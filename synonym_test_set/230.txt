@@ -1,0 +1,3 @@
+to_hit
+to_smack
+to_color to_ball to_produce to_weaken 

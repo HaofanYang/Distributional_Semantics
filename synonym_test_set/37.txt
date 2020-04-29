@@ -1,0 +1,3 @@
+to_iron
+to_flatten
+to_damage to_modify to_live to_strike_a_chord 

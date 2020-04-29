@@ -1,0 +1,3 @@
+to_turn_on
+to_power
+to_bump to_intrude to_address to_forgo 

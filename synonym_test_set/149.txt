@@ -1,0 +1,3 @@
+to_reach
+to_get_to
+to_stroke to_jump to_press to_turn_on 

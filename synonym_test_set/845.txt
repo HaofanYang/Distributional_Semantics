@@ -1,0 +1,3 @@
+to_activate
+to_give_weapons
+to_whisk to_associate to_travel to_spin_in_circles 

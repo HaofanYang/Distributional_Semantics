@@ -1,0 +1,3 @@
+to_give_weapons
+to_fortify
+to_clash to_judge to_reason to_strike_a_chord 

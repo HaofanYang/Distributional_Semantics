@@ -1,0 +1,3 @@
+to_electrify
+to_power
+to_arm to_yearn to_settle to_weaken 

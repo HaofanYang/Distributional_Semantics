@@ -1,0 +1,3 @@
+to_power
+to_turn_on
+to_cede to_certificate to_end to_prepare 

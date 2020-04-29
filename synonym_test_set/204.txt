@@ -1,0 +1,3 @@
+to_centralize
+to_make_easier
+to_strum to_trim to_land to_evade 

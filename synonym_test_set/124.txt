@@ -1,0 +1,3 @@
+to_talk_together
+to_give
+to_decay to_bind to_refocus to_quarrel 

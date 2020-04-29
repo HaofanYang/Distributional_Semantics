@@ -1,0 +1,3 @@
+to_lunge
+to_leap
+to_resonate to_speak_softly to_infer to_get_to 

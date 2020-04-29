@@ -1,0 +1,3 @@
+to_comprise
+to_enclose
+to_divide to_pain to_blow_on to_invade 

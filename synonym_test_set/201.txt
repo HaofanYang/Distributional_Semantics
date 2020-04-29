@@ -1,0 +1,3 @@
+to_despoil
+to_dirty
+to_study to_give to_copy to_rise 

@@ -1,0 +1,3 @@
+to_infect
+to_taint
+to_divide to_protrude to_imagine to_live 

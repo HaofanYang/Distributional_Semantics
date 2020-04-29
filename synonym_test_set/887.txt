@@ -1,0 +1,3 @@
+to_enter
+to_land
+to_determine to_play_an_instrument to_inebriate to_declare 

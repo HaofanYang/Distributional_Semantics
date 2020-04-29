@@ -1,0 +1,3 @@
+to_clash
+to_grapple
+to_switch to_pardon to_assemble to_deceive 

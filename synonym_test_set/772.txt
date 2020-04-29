@@ -1,0 +1,3 @@
+to_talk_together
+to_give
+to_change to_mark_off to_scream to_believe 

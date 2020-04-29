@@ -1,0 +1,3 @@
+to_give
+to_discuss
+to_activate to_blink_one_eye to_concentrate to_disarrange 

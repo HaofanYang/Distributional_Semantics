@@ -1,0 +1,3 @@
+to_classify
+to_sort
+to_obstruct to_swell to_give_weapons to_picture 

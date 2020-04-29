@@ -1,0 +1,3 @@
+to_leave
+to_settle
+to_warn to_forgive to_dwell to_stun 

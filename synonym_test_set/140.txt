@@ -1,0 +1,3 @@
+to_heap
+to_ball
+to_color to_tattoo to_disallow to_turn_on 

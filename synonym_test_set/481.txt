@@ -1,0 +1,3 @@
+to_enter
+to_arrive
+to_mark to_raise to_assume to_zone 

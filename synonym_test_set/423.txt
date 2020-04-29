@@ -1,0 +1,3 @@
+to_give_up
+to_cede
+to_rewrite to_roll to_enclose to_stun 

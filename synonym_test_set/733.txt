@@ -1,0 +1,3 @@
+to_mix
+to_aggregate
+to_reset to_hold_a_gun to_leap to_change 

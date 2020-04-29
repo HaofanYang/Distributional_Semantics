@@ -1,0 +1,3 @@
+to_prime
+to_give_weapons
+to_disconnect to_dedicate to_alarm to_toil 

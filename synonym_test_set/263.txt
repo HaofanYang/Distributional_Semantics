@@ -1,0 +1,3 @@
+to_glob
+to_trim
+to_associate to_centralize to_decipher to_throw 

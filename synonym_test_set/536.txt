@@ -1,0 +1,3 @@
+to_color
+to_ink
+to_long to_discuss to_dwell to_transfer 

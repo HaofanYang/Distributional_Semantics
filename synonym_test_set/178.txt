@@ -1,0 +1,3 @@
+to_journey
+to_travel
+to_force to_reveal to_pollute to_settle 

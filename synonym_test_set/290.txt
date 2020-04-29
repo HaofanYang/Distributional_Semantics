@@ -1,0 +1,3 @@
+to_assess
+to_study
+to_disparity to_avoid to_contrast to_accomplish 

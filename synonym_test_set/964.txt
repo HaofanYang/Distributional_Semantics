@@ -1,0 +1,3 @@
+to_grow
+to_explode
+to_worsen to_rub to_whack to_replicate 

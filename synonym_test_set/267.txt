@@ -1,0 +1,3 @@
+to_pick
+to_stroke
+to_add to_switch to_makeup to_confine 

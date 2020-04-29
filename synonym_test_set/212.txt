@@ -1,0 +1,3 @@
+to_trim
+to_glob
+to_carve to_categorize to_whisper to_term 

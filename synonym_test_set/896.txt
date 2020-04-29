@@ -1,0 +1,3 @@
+to_shorten
+to_trim
+to_inventory to_infer to_bang to_dirty 

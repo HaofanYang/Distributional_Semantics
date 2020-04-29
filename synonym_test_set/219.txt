@@ -1,0 +1,3 @@
+to_shorten
+to_trim
+to_reproduce to_explain to_limit to_consult 

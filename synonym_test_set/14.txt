@@ -1,0 +1,3 @@
+to_wake
+to_arouse
+to_show_differences to_leave to_declare to_restrict 

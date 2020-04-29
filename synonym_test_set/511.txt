@@ -1,0 +1,3 @@
+to_reside
+to_live
+to_battle to_zigzag to_power to_stir_briskly 

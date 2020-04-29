@@ -1,0 +1,3 @@
+to_make_evil
+to_corrupt
+to_focus to_give to_inquire to_inform 

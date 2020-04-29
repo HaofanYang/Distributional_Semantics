@@ -1,0 +1,3 @@
+to_resound
+to_echo
+to_print to_strum to_ship to_fan 

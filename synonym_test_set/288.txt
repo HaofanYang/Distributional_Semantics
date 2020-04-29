@@ -1,0 +1,3 @@
+to_put_down
+to_hit
+to_visit to_build to_move to_arise 

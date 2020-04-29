@@ -1,0 +1,3 @@
+to_infect
+to_pollute
+to_elevate to_roll to_replicate to_gather 
